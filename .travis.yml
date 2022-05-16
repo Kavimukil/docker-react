@@ -7,3 +7,15 @@ before_install:
   - docker build -t mukil/react-app-dev:latest -f Dockerfile.dev .
 script:
   - docker run -e CI=true mukil/react-app-dev npm run test
+deploy:
+  provider: "elasticbeanstalk"
+  region: "us-west-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket: "elasticbeanstalk-us-west-1-453706735279"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
