@@ -6,4 +6,4 @@ services:
 before_install:
   - docker build -t mukil/react-app-dev:latest -f Dockerfile.dev .
 script:
-  - docker run -it mukil/react-app-dev npm run test -- --coverage
+  - docker run -e CI=true mukil/react-app-dev npm run test
